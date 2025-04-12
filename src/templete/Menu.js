@@ -134,7 +134,7 @@ const MainMenu = () => {
           <Link to="Map"><img className="w-10 h-10" src="/google-maps.png" />
           
           </Link>
-            <p>{Location.city}<br></br>{Location.postcode}</p>
+            <p>{Location.plus_code}<br></br>{Location.postcode}</p>
           </div>
         ) : (
           <p>Loading location...</p>
