@@ -126,11 +126,11 @@ const MainMenu = () => {
       <ToastContainer />
 
       <div className="absolute top-0 left-0 ">
-        
+      console.log("Location:", Location);
         {Location ? (
           <div className="flex p-2">
           <Link to="Map"><img className="w-10 h-10" src="/google-maps.png" />
-          console.log("Location:", Location);
+          
           </Link>
             <p>{Location.city}<br></br>{Location.postcode}</p>
           </div>
