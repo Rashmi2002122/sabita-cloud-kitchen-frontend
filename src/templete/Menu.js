@@ -16,12 +16,12 @@ const MainMenu = () => {
   const [Location, setLocation] = useState(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  // Toggle profile visibility
+ 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
-  // Hide splash screen after 2 seconds
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
@@ -130,9 +130,9 @@ const MainMenu = () => {
         {Location ? (
           <div className="flex p-2">
           <Link to="Map"><img className="w-10 h-10" src="/google-maps.png" />
-
+          console.log("Location:", Location);
           </Link>
-            <p>{Location.city},<br></br>{Location.postcode}</p>
+            <p>{Location.city}<br></br>{Location.postcode}</p>
           </div>
         ) : (
           <p>Loading location...</p>
