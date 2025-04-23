@@ -5,9 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
-import Profile from "./Profile"; 
-import base_url  from "../SpringBootAPI"
-
+import Profile from "./Profile";
+import base_url from "../SpringBootAPI";
+import { useCart } from "../templete/CartContext"; // Importing useCart from CartContext
 
 const MainMenu = () => {
   // State variables
@@ -16,12 +16,12 @@ const MainMenu = () => {
   const [Location, setLocation] = useState(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
- 
+  const { addToCart } = useCart();
+
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
-  
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
@@ -68,8 +68,7 @@ const MainMenu = () => {
         setUser(data);
       } catch (error) {
         toast.error("You are not logged in. Redirecting...");
-        window.location.href =
-         `${base_url}/oauth2/authorization/google`;
+        window.location.href = `${base_url}/oauth2/authorization/google`;
       }
     };
 
@@ -122,19 +121,21 @@ const MainMenu = () => {
   console.log("Location:", Location);
   if (!user) return null;
 
-  
   return (
     <div>
       <ToastContainer />
 
-      <div className="absolute top-0 left-0 ">
-        
+      <div className="absolute top-0 left-0">
         {Location ? (
           <div className="flex p-2">
-          <Link to="Map"><img className="w-10 h-10" src="/google-maps.png" />
-          
-          </Link>
-            <p>{Location.plus_code}<br></br>{Location.postcode}</p>
+            <Link to="Map">
+              <img className="w-10 h-10" src="/google-maps.png" />
+            </Link>
+            <p>
+              {Location.plus_code}
+              <br />
+              {Location.postcode}
+            </p>
           </div>
         ) : (
           <p>Loading location...</p>
@@ -143,13 +144,15 @@ const MainMenu = () => {
 
       {showSplash && (
         <div className="splash fade-out">
-          <img src="/LogoIcon.png" alt="Cart" className="fade-in w-500 h-50 " />
+          <img src="/LogoIcon.png" alt="Cart" className="fade-in w-500 h-50" />
         </div>
       )}
 
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4 sm:p-8">
         <div className="fixed top-4 right-4 flex items-center space-x-3">
-          <img src="/shopping-bag.png" alt="Cart" className="w-10 h-10" />
+          <Link to="/home/checkout">
+            <img src="/shopping-bag.png" alt="Cart" className="w-10 h-10" />
+          </Link>
           <Link onClick={toggleProfile}>
             {user.picture ? (
               <img
@@ -183,10 +186,25 @@ const MainMenu = () => {
                   <h3 className="text-xl font-semibold text-black">
                     {item.foodName}
                   </h3>
-                  <p className="text-sm text-gray-600">{item.foodDescription}</p>
+                  <p className="text-sm text-gray-600">
+                    {item.foodDescription}
+                  </p>
                   <p className="mt-2 text-lg font-bold text-green-600">
                     ₹ {item.foodPrice}
                   </p>
+
+                  <button
+                    onClick={() =>
+                      addToCart({
+                        ...item,
+                        quantity: 1
+                       
+                      })
+                    }
+                    className="mt-3 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               ))
             ) : (

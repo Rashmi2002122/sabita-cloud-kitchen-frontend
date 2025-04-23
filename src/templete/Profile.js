@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Profile = ({ user, toggleProfile }) => {
   return (
@@ -24,14 +25,14 @@ const Profile = ({ user, toggleProfile }) => {
             </a>
           </li>
           <li>
-            <a href="#" className="block text-gray-700 hover:text-gray-900">
+            <Link to="/home/checkout" className="block text-gray-700 hover:text-gray-900">
               Order
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="block text-gray-700 hover:text-gray-900">
+            <Link to="/home/map" className="block text-gray-700 hover:text-gray-900">
               Location
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#" className="block text-gray-700 hover:text-gray-900">

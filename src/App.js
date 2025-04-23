@@ -10,19 +10,27 @@ import { Container, Button } from "reactstrap";
 import MainMenu from './templete/Menu'; // 
 import Profile from './templete/Profile'; 
 import Map from './templete/Map';
+import CheckoutPage from './templete/CheckoutPage'; // Import the CheckoutPage component
+import { CartProvider } from './templete/CartContext';
+
 function App() {
   return (
     <div>
+      
+      <CartProvider>
       <Router>
         <Routes>
-          <Route>
-            <Route path="/" element={<OneTimeBiography />} />
-            <Route path="/home" element={<MainMenu />} /> 
-            <Route path="home/map" element={<Map />} />
-  
-          </Route>
+          <Route path="/" element={<OneTimeBiography />} />
+          <Route path="/home" element={<MainMenu />} /> 
+          <Route path="/home/map" element={<Map />} />
+          
+          <Route path="/home/checkout" element={<CheckoutPage />} />
+         
         </Routes>
       </Router>
+      <ToastContainer />
+      </CartProvider >
+    
     </div>
   );
 }
