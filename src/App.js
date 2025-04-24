@@ -10,8 +10,10 @@ import { Container, Button } from "reactstrap";
 import MainMenu from './templete/Menu'; // 
 import Profile from './templete/Profile'; 
 import Map from './templete/Map';
-import CheckoutPage from './templete/CheckoutPage'; // Import the CheckoutPage component
+import CheckoutPage from './templete/CheckoutPage'; 
 import { CartProvider } from './templete/CartContext';
+
+import Order from './templete/Order';
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           <Route path="/home/map" element={<Map />} />
           
           <Route path="/home/checkout" element={<CheckoutPage />} />
+          <Route path="/home/checkout/order" element={<Order />} />
          
         </Routes>
       </Router>

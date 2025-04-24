@@ -42,7 +42,10 @@ const CheckoutPage = () => {
         ) : (
           <div>
             {cartItems.map((item) => (
-              <div key={item._id} className="flex justify-between items-center py-4 border-b">
+              <div
+                key={item._id}
+                className="flex justify-between items-center py-4 border-b"
+              >
                 <div className="flex items-center space-x-4">
                   <img
                     src={item.foodImage || "https://via.placeholder.com/150"}
@@ -51,20 +54,26 @@ const CheckoutPage = () => {
                   />
                   <div>
                     <h3 className="text-xl font-semibold">{item.foodName}</h3>
-                    <p className="text-sm text-gray-600">{item.foodDescription}</p>
+                    <p className="text-sm text-gray-600">
+                      {item.foodDescription}
+                    </p>
                     <p className="text-lg text-green-600">₹ {item.foodPrice}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <button
-                    onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
+                    onClick={() =>
+                      handleQuantityChange(item._id, item.quantity - 1)
+                    }
                     className="px-2 py-1 bg-gray-300 rounded-full"
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
-                    onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
+                    onClick={() =>
+                      handleQuantityChange(item._id, item.quantity + 1)
+                    }
                     className="px-2 py-1 bg-gray-300 rounded-full"
                   >
                     +
@@ -81,16 +90,36 @@ const CheckoutPage = () => {
 
             <div className="flex justify-between items-center py-4 border-t mt-6">
               <p className="text-xl font-semibold">Total</p>
-              <p className="text-xl font-semibold text-green-600">₹ {totalPrice}</p>
+              <p className="text-xl font-semibold text-green-600">
+                ₹ {totalPrice}
+              </p>
             </div>
 
+            <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="w-4 h-4"
+                  onChange={(e) => {
+                    if (!e.target.checked) {
+                      toast.error("You must agree to the terms and conditions.");
+                    }
+                  }}
+                />
+                <label htmlFor="terms" className="text-xl  text-gray-600">
+                  I agree to send my order screenshot to the kitchen <span className="text-red-600">7847*****8</span> Whatsapp and Call to confirm my order.
+                </label>
+              </div>
             <div className="mt-6 flex justify-center">
-              <button
-                onClick={handleCheckout}
-                className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
-              >
-                Proceed to Checkout
-              </button>
+              
+              <Link to="/home/checkout/order">
+                <button
+                  onClick={handleCheckout}
+                  className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
+                >
+                  Proceed to Checkout
+                </button>
+              </Link>
             </div>
           </div>
         )}
