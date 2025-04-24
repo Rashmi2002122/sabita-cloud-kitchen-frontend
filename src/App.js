@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import OneTimeBiography from './templete/OneTimeBiography';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Button } from "reactstrap";
-import MainMenu from './templete/Menu'; // 
-import Profile from './templete/Profile'; 
+
+import MainMenu from './templete/Menu'; 
+
 import Map from './templete/Map';
 import CheckoutPage from './templete/CheckoutPage'; 
 import { CartProvider } from './templete/CartContext';
