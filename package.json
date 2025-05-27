@@ -1,5 +1,6 @@
 {
-  "name": "sabita-cloud-kitchen",
+  "name": "employee-management-system",
+  "description": "A React-based Employee Management System with features like employee management, attendance tracking, and leave management.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
